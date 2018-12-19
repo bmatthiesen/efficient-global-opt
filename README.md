@@ -3,7 +3,7 @@ Efficient Global Optimal Resource Allocation in Non-Orthogonal Interference Netw
 
 This code package is related to the following scientific article:
 
-Bho Matthiesen and Eduard Jorswieck, "Efficient Global Optimal Resource Allocation in Non-Orthogonal Interference Networks," submitted to IEEE Transactions on Signal Processing.
+Bho Matthiesen and Eduard Jorswieck, "[Efficient Global Optimal Resource Allocation in Non-Orthogonal Interference Networks](https://arxiv.org/abs/1812.07253)," submitted to IEEE Transactions on Signal Processing.
 
 
 ## Abstract of Article
