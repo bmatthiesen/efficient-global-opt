@@ -557,6 +557,8 @@ template <size_t NCDim, size_t CDim, size_t NumConstraints>
 void
 RR<NCDim,CDim,NumConstraints>::optimize()
 {
+	bool tmp;
+
 	checkModel();
 #ifdef REDUCTION
 	red->updateModel();
@@ -564,9 +566,10 @@ RR<NCDim,CDim,NumConstraints>::optimize()
 	bnd->updateModel();
 	objs->updateModel();
 
+	tmp = disablePrintResult;
 	disablePrintResult = true;
 	SIT<NCDim>::optimize();
-	disablePrintResult = false;
+	disablePrintResult = tmp;
 
 	optval = obj(xopt, &_optC); // set optC
 

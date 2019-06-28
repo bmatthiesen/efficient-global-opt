@@ -128,23 +128,24 @@ template <typename... Ts>
 Sim<S>::Sim(const argparse& args, Ts&&... fwd)
 	: hdf(args.wpfile, args.WPidx), wp(hdf.getWP()), solver(wp, std::forward<Ts>(fwd)...)
 {
-#ifdef SLURM
 	const char * const e = getenv("JOB_HPC_SAVEDIR");
+	std::string dir;
 
 	if (e == nullptr)
+#ifdef SLURM
 		throw std::runtime_error("can't get savedir from JOB_HPC_SAVEDIR");
-
-#ifdef SLURMLOCK
+	
+	#ifdef SLURMLOCK
 	lockfile = std::string(e) + "/" + solver.getName() + "_wp" + std::to_string(args.WPidx) + ".lock";
-#endif
-
-	hdf.setResultFile(std::string(e) + "/res_" + solver.getName() + "_", solver.getDim());
-
-	solver.enableBackup(std::string(e) + "/ckpt_" + solver.getName() + "_wp=" + std::to_string(args.WPidx), backupInterval);
+	#endif
 #else
-	hdf.setResultFile("../results/res_" + solver.getName() + "_", solver.getDim());
-	solver.enableBackup("../results/ckpt_" + solver.getName() + "_wp=" + std::to_string(args.WPidx), backupInterval);
+		dir = "../results";
+	else
+		dir = e;
 #endif
+
+	hdf.setResultFile(dir + "/res_" + solver.getName() + "_", solver.getDim());
+	solver.enableBackup(dir + "/ckpt_" + solver.getName() + "_wp=" + std::to_string(args.WPidx), backupInterval);
 }
 
 template <class S>

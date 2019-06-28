@@ -129,6 +129,9 @@ class RR : protected SIT<NCDim>
 		using SIT<NCDim>::disableBackup;
 		using SIT<NCDim>::removeBackup;
 
+		using SIT<NCDim>::getEta;
+		using SIT<NCDim>::getEpsilon;
+
 		using SIT<NCDim>::xopt;
 		using SIT<NCDim>::optval;
 		using SIT<NCDim>::iter;
@@ -187,7 +190,7 @@ class RR : protected SIT<NCDim>
 #endif
 		void bound(RBox& red) override final;
 		bool isFeasible(const vtype& P) override final; // if you remove final: make sure that obj calls correct isFeasible!
-		void setGamma(const basetype g) override final;
+		void setGamma(const basetype g) override;
 
 	private:
 		void checkModel();

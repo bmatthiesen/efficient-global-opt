@@ -138,7 +138,7 @@ class MosekRed : private MosekBase, public RedSolver
 		void setConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const Boundtype bnd)
 			{ MosekBase::setConstr(constrIdx, linC, linNC, c, bnd); }
 
-		const size_t setLogConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const bool negativeSign)
+		size_t setLogConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const bool negativeSign)
 			{ return MosekBase::setLogConstr(constrIdx, linC, linNC, c, negativeSign); }
 
 		void updateModel()

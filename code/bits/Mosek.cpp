@@ -214,7 +214,7 @@ void
 RR<NCDim,CDim,NumConstraints>::MosekBase::setConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const Boundtype bnd)
 {
 	assert(linC.size() == dimC);
-	assert(linNC.size() == dimNC);
+	assert(dimNC == 0 || linNC.size() == dimNC);
 
 	for (size_t j = 0; j < dimC; j++)
 	{
@@ -316,7 +316,7 @@ RR<NCDim,CDim,NumConstraints>::MosekBase::setLogConstr(const size_t constrIdx, c
 
 	// set aux constraint
 	assert(linC.size() == dimC);
-	assert(linNC.size() == dimNC);
+	assert(dimNC == 0 || linNC.size() == dimNC);
 
 	for (size_t i = 0; i < dimC; ++i)
 	{

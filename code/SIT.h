@@ -186,6 +186,10 @@ public:
 	void setUB(const size_t idx, const basetype e);
 	void setUserData(const void* ud);
 
+	// parameter getter
+	basetype getEta() { return eta; }
+	basetype getEpsilon() { return epsilon; }
+
 	// parameter
 	basetype gamma0;
 	bool output;

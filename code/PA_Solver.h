@@ -73,6 +73,15 @@ class SNDSolver
 
 		std::unique_ptr<H5::Result> solve(const size_t);
 
+		void enableBackup(const std::string&, const std::chrono::seconds&)
+		{
+			std::cerr << "enableBackup() not implemented" << std::endl;
+		}
+
+		void removeBackup() const
+		{
+			std::cerr << "removeBackup() not implemented" << std::endl;
+		}
 	private:
 		PA<Dim+1> s;
 		const double w[Dim] = {1, 1, 1};

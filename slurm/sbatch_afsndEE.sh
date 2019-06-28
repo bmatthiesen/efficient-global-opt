@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#SBATCH -J "afsndEE"
-#SBATCH --array=0-14999%4096
+#SBATCH -J "afsndEE_testPrec"
+#SBATCH --array=0-164%4096
 #SBATCH --account=p_mwrc
 #SBATCH --time=23:59:59
 #SBATCH --mem-per-cpu=2583
@@ -17,7 +17,7 @@ if [ ! -d ${JOB_BASEDIR} ]; then
 	mkdir ${JOB_HPC_SAVEDIR}
 fi
 
-EXE=$(readlink -e ../code/afsndEE)
+EXE=$(readlink -e ../code/afsndEE_gurobi)
 DATA=$(readlink -e ../data/wp.h5)
 
 module load foss

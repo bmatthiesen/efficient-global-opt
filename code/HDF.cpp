@@ -24,7 +24,7 @@ extern "C" {
 	#include "hdf5.h"
 }
 
-#include "HDF.h"
+#include <sys/stat.h>
 
 hid_t
 h5call(const hid_t ret)

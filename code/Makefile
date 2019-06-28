@@ -1,9 +1,9 @@
 ## config
 
 CXXFLAGS=-std=c++17
-#HPCOPTS=-march=haswell -mtune=haswell
-HPCOPTS=-march=native -mtune=native
-CPPFLAGS=-O3 ${HPCOPTS} -DNDEBUG #-DSLURM -DSLURMLOCK
+#HPCOPTS=-msse4.2 -axavx
+HPCOPTS=-march=haswell -mtune=haswell
+CPPFLAGS=-O3 ${HPCOPTS} -DNDEBUG -DSLURM #-DSLURMLOCK
 #CPPFLAGS= -g -O0 -DDEBUG
 CPPFLAGS += -fpic -Wall -Wextra -Wpedantic -Wvector-operation-performance
 CXXFLAGS += -Wnon-virtual-dtor -Woverloaded-virtual #-Weffc++
@@ -52,6 +52,7 @@ OBJ_SIT = util.o
 OBJ_RR = $(OBJ_SIT) Mosek.o Gurobi.o scopt-ext.o
 OBJ_SND = $(OBJ_RR) HDF.o util.o
 OBJ_HK = $(OBJ_RR) HDF.o HK.o util.o
+OBJ_HK2 = $(OBJ_RR) HDF.o HK2.o util.o
 OBJ_PA = PA_Solver.o HDF.o util.o Gurobi.o
 
 ## rules
@@ -70,9 +71,24 @@ hk: $(OBJ_HK)
 
 hkEE: $(OBJ_HK)
 
+hk2: $(OBJ_HK2)
+
 leakage: $(OBJ_SIT)
 
 PA_afsnd: $(OBJ_PA)
+
+tinEE_dm: util.o HDF.o
+
+tinEE_dm: CPPFLAGS+=-Itin_dinkelbach
+
+tinEE_dm: CPPFLAGS:=$(filter-out -Wpedantic, $(CPPFLAGS))
+
+.PRECIOUS: bench_%.o
+bench_%.o: bench.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -DNUMUE=$(firstword $(subst _, ,$*)) -DNUMNC=$(word 2,$(subst _, ,$*)) -USLURM -c bench.cpp -o $@
+
+bench_%: bench_%.o $(OBJ_SND)
+	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 %.a: %.o 
 	$(AR) $(ARFLAGS) $@ $?

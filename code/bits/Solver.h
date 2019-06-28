@@ -63,7 +63,7 @@ class RedSolver
 
 		virtual void setConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const Boundtype bnd) =0;
 
-		virtual const size_t setLogConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const bool negativeSign) =0;
+		virtual size_t setLogConstr(const size_t constrIdx, const vtypeC& linC, const vtype& linNC, const basetype c, const bool negativeSign) =0;
 		virtual void updateModel() =0;
 
 		virtual void setMinimize() =0;
