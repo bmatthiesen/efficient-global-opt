@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Bho Matthiesen
+# Copyright (C) 2018-2019 Bho Matthiesen
 # 
 # This program is used in the article:
 # 
