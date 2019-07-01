@@ -23,7 +23,7 @@ The complete source code is available in `code/`. Prior to compilation, please u
 
 ## Acknowledgements
 
-This research was supported in part by the Deutsche Forschungsgemeinschaft (DFG) in the [Collaborative Research Center 912 "Highly Adaptive Energy-Efficient Computing."](https://tu-dresden.de/ing/forschung/sfb912)
+This research was supported in part by the Deutsche Forschungsgemeinschaft (DFG) in the [Collaborative Research Center 912 "Highly Adaptive Energy-Efficient Computing."](https://tu-dresden.de/ing/forschung/sfb912) and under grant number JO 801/24-1.
 
 We thank the Center for Information Services and High Performance Computing (ZIH) at TU Dresden for generous allocations of computer time.
 
